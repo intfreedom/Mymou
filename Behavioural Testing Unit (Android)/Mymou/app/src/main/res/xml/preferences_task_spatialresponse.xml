@@ -4,21 +4,19 @@
 
     <PreferenceCategory
             app:key="task_settings"
-            android:layout="@layout/preferences_title"
             app:title="Settings for Spatial Response task">
-
-        <ListPreference
-                android:defaultValue="@integer/default_sr_locations"
-                android:entries="@array/spatialresponsenumcues"
-                android:entryValues="@array/spatialresponsenumcues"
-                app:key="@string/preftag_sr_locations"
-                app:title="Select number of spatial positions (2/4/8) to chose from" />
 
         <mymou.preferences.SeekBarPreferenceCustom
                 android:defaultValue="@integer/default_sr_num_stimuli"
-                android:max="8"
                 app:key="@string/preftag_sr_num_stimuli"
-                app:title="Number of successive positions to memorise" />
+                app:title="Number of successive positions to memorise"
+                android:max="8"/>
+
+        <mymou.preferences.SeekBarPreferenceCustom
+                android:defaultValue="@integer/default_sr_locations"
+                app:key="@string/preftag_sr_locations"
+                android:max="8"
+                app:title="Number of spatial positions (2/4/8) to chose from" />
 
         <mymou.preferences.SeekBarPreferenceCustom
                 android:defaultValue="@integer/default_sr_duration_on"

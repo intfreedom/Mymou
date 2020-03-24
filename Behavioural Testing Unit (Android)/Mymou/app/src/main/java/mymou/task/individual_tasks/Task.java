@@ -1,9 +1,3 @@
-package mymou.task.individual_tasks;
-
-import androidx.fragment.app.Fragment;
-import mymou.preferences.PreferencesManager;
-import mymou.task.backend.TaskInterface;
-
 /**
  * Parent Task Fragment
  *
@@ -11,12 +5,20 @@ import mymou.task.backend.TaskInterface;
  * Enables communiation with TaskManager parent
  *
  */
+
+package mymou.task.individual_tasks;
+
+import androidx.fragment.app.Fragment;
+import mymou.preferences.PreferencesManager;
+import mymou.task.backend.TaskInterface;
+
 public abstract class Task extends Fragment {
 
     public abstract void setFragInterfaceListener(TaskInterface callback);
 
-    public void endOfTrial(boolean successfulTrial, double rew_scalar, TaskInterface callback, PreferencesManager preferencesManager) {
+    public void endOfTrial(boolean successfulTrial, double rew_scalar, TaskInterface callback) {
         String outcome;
+        PreferencesManager preferencesManager = new PreferencesManager(getContext());
         if (successfulTrial) {
             outcome = preferencesManager.ec_correct_trial;
         } else {
@@ -26,8 +28,9 @@ public abstract class Task extends Fragment {
         callback.trialEnded_(outcome, rew_scalar);
     }
 
-     public void endOfTrial(boolean successfulTrial, TaskInterface callback, PreferencesManager preferencesManager) {
+     public void endOfTrial(boolean successfulTrial, TaskInterface callback) {
         String outcome;
+        PreferencesManager preferencesManager = new PreferencesManager(getContext());
         if (successfulTrial) {
             outcome = preferencesManager.ec_correct_trial;
         } else {

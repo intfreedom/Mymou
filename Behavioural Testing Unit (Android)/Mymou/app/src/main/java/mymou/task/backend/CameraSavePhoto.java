@@ -9,8 +9,6 @@ import android.graphics.Matrix;
 import android.media.Image;
 import android.util.Log;
 import androidx.preference.PreferenceManager;
-
-import mymou.R;
 import mymou.Utils.FolderManager;
 
 import java.io.ByteArrayOutputStream;
@@ -21,11 +19,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.nio.ByteBuffer;
 
-import mymou.preferences.PreferencesManager;
-
 /**
- * Saves image file with filename corresponding to the provided timestamp
- *
+ * Saves linked file into linked filename
  */
 class CameraSavePhoto implements Runnable {
 
@@ -36,23 +31,15 @@ class CameraSavePhoto implements Runnable {
     private Context mContext;
     private FolderManager folderManager;
 
-    /**
-     * Instantiation
-     *
-     * @param image Image to be saved
-     * @param timestampU Filename to be saved
-     */
     public CameraSavePhoto(Image image, String timestampU, Context context) {
         mImage = image;
         timestamp = timestampU;
         mContext = context;
         folderManager = new FolderManager(mContext, 0);
         day = folderManager.getBaseDate();
+        Log.d(TAG, " instantiated");
     }
 
-    /**
-     *
-     */
     @Override
     public void run() {
         Log.d(TAG, "Running CameraSavePhoto..");
@@ -86,42 +73,37 @@ class CameraSavePhoto implements Runnable {
             bitmapCropped = Bitmap.createBitmap(bitmap, startX, startY, endX, endY);
 
         } else {
-
             // Just take whole image
             bitmapCropped = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight());
 
         }
 
-        // Check if user wants to save the integer array (expensive)
-        if (settings.getBoolean(mContext.getResources().getString(R.string.preftag_savefacerecogarrays),  mContext.getResources().getBoolean(R.bool.default_savefacerecogarrays))) {
-
-            // Create integer array for facerecog
-            int x = bitmapCropped.getWidth();
-            int y = bitmapCropped.getHeight();
-            int[] intArray = new int[x * y];
-            bitmapCropped.getPixels(intArray, 0, x, 0, 0, x, y);
-            for (int i = 0; i < intArray.length; i++) {
-                intArray[i] = Color.red(intArray[i]); //Any colour will do as greyscale
-            }
-
-            // Run image through faceRecog
-            TaskManager.setFaceRecogPrediction(intArray);
-            Log.d(TAG, "Face recog finished");
-
-            //Save pixel values
-            long startTime = System.currentTimeMillis();
-            saveIntArray(intArray);
-            long endTime = System.currentTimeMillis();
-            long duration = (endTime - startTime);
-            Log.d(TAG, "Integer array saved in " + duration + "ms");
+        // Create integer array for facerecog
+        int x = bitmapCropped.getWidth();
+        int y = bitmapCropped.getHeight();
+        int[] intArray = new int[x * y];
+        bitmapCropped.getPixels(intArray, 0, x, 0, 0, x, y);
+        for (int i = 0; i < intArray.length; i++) {
+            intArray[i] = Color.red(intArray[i]); //Any colour will do as greyscale
         }
 
+        // Run image through faceRecog
+        TaskManager.setFaceRecogPrediction(intArray);
+        Log.d(TAG, "Face recog finished");
+
+        //Save pixel values
+        long startTime = System.currentTimeMillis();
+        saveIntArray(intArray);
+        long endTime = System.currentTimeMillis();
+        long duration = (endTime - startTime);
+        Log.d(TAG, "Integer array saved in "+duration);
+
         //Save photo as jpeg
-        long startTimeb = System.currentTimeMillis();
+        startTime = System.currentTimeMillis();
         savePhoto(bitmapCropped);
-        long endTimeb = System.currentTimeMillis();
-        long durationb = (endTimeb - startTimeb);
-        Log.d(TAG, "Cropped photo saved in " + durationb + "ms");
+        endTime = System.currentTimeMillis();
+        duration = (endTime - startTime);
+        Log.d(TAG, "Cropped photo saved in "+duration);
 
         Log.d(TAG, "CameraSavePhoto finished successfully");
 
@@ -174,6 +156,13 @@ class CameraSavePhoto implements Runnable {
             e.printStackTrace();
         }
         Log.d(TAG, "Int array saved"+fileName);
+    }
+
+    public static Bitmap rotateImage(Bitmap source, float angle) {
+        Matrix matrix = new Matrix();
+        matrix.postRotate(angle);
+        return Bitmap.createBitmap(source, 0, 0, source.getWidth(), source.getHeight(),
+                matrix, true);
     }
 
 }

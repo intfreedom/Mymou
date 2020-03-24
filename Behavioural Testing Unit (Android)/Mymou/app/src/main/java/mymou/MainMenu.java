@@ -60,7 +60,7 @@ public class MainMenu extends Activity {
 
         initialiseSpinner();
 
-        UtilsSystem.setBrightness(true, this, preferencesManager);
+        UtilsSystem.setBrightness(true, this);
 
     }
 
@@ -286,8 +286,6 @@ public class MainMenu extends Activity {
                         intent2.putExtra(getString(R.string.preftag_settings_to_load), getString(R.string.preftag_task_sl_settings));
                     } else if (taskSelected == 13) {
                         intent2.putExtra(getString(R.string.preftag_settings_to_load), getString(R.string.preftag_task_rdm_settings));
-                    } else if (taskSelected == 14) {
-                        intent2.putExtra(getString(R.string.preftag_settings_to_load), getString(R.string.preftag_task_dvs_settings));
                     }
 
                     startActivity(intent2);

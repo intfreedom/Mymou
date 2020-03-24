@@ -212,7 +212,7 @@ public class TaskObjectDiscrim extends Task {
             // Did they select the appropriate cue
             boolean correct_chosen = Integer.valueOf(view.getId()) == chosen_cue_id;
 
-            endOfTrial(correct_chosen, callback, prefManager);
+            endOfTrial(correct_chosen, callback);
 
         }
     };
