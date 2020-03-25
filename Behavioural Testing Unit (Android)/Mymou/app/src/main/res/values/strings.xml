@@ -28,7 +28,6 @@
         <item>Spatial response</item>
         <item>Sequential Learning</item>
         <item>Random dot motion</item>
-        <item>Discrete value space</item>
     </string-array>
 
     <string-array name="task_descriptions">
@@ -46,7 +45,6 @@
         <item>Different spatial locations are shown sequentially. Subjects must then repeat the sequence in order for reward. </item>
         <item>A sequence of images in shown, each image must be pressed to progress to the next image. On the second lap of the sequence, at a random point a choice will be given between the next valid image in the sequence vs one of the other images from the sequence</item>
         <item>A movie is played consisting of dots moving in different directions, for which a specified proportion of dots all move towards either the left or right of the screen. Subjects must then select which side of the screen the dots were moving towards.</item>
-        <item>Subjects are given choices between two cues that lie on a 10x10 value grid made up of probability and magnitude dimensions. For example, the cue at (1, 1) will give 10% reward 10% of the time. They can then pick either cue are given the corresponding reward along with a secondary reinforcer to indicate whether it was better or worse than the counterfactual option.</item>
     </string-array>
 
     <string name="default_startuptime">0700</string>
@@ -71,16 +69,10 @@
     <string name="preftag_cam_picker">preftag_cam_picker</string>
     <string name="preftag_camera_resolution">preftag_camera_resolution</string>
     <string name="preftag_facerecog">facerecog</string>
-    <string name="preftag_savefacerecogarrays">savefacerecogarrays</string>
-    <string name="preftag_dimscreen">preftag_dimscreen</string>
-    <string name="preftag_dimscreenlevel">preftag_dimscreenlevel</string>
-    <string name="preftag_dimscreentime">preftag_dimscreentime</string>
     <string name="preftag_restartoncrash">restartoncrash</string>
     <string name="preftag_sound">sound</string>
     <string name="preftag_autostart">autostart</string>
-    <string name="preftag_autostarttimepicker">autostarttimepicker</string>
     <string name="preftag_autostop">autostop</string>
-    <string name="preftag_autostoptimepicker">autostoptimepicker</string>
     <string name="preftag_skip_go_cue">skip_go_cue</string>
 
     <string name="preftag_gocuecolors">colours_gocues</string>
@@ -143,7 +135,6 @@
     <string name="preftag_task_sr_settings">preftag_task_sr_settings</string>
     <string name="preftag_task_sl_settings">preftag_task_sl_settings</string>
     <string name="preftag_task_rdm_settings">preftag_task_rdm_settings</string>
-    <string name="preftag_task_dvs_settings">preftag_task_dvs_settings</string>
     <string name="preftag_task_od_settings">preftag_task_od_settings</string>
     <string name="preftag_bluetooth_strobes">preftag_bluetooth_strobes</string>
     <string name="preftag_settings_to_load">preftag_settings_to_load</string>
@@ -190,10 +181,6 @@
     <string name="preftag_sl_map_selected">preftag_sl_map_selected</string>
     <string name="preftag_sl_seq_length">preftag_sl_seq_length</string>
 
-    <string name="preftag_dvs_feedback_duration">preftag_dvs_feedback_duration</string>
-    <string name="preftag_dvs_randomly_place_options">preftag_dvs_randomly_p</string>
-    <string name="preftag_dvs_give_full_map">preftag_dvs_give_full_map</string>
-
     <string name="preftag_pr_cue_colour">pr_cue_colour</string>
     <string name="preftag_pr_progress_bar">preftag_pr_progress_bar</string>
     <string name="preftag_pr_animation_duration">pr_animation_duration</string>
@@ -208,7 +195,7 @@
     <string name="preftag_sr_duration_off">sr_duration_off</string>
     <string name="preftag_sr_duration_on">sr_duration_on</string>
     <string name="preftag_sr_num_stimuli">sr_num_stimuli</string>
-    <string name="preftag_sr_locations">preftag_sr_locations</string>
+    <string name="preftag_sr_locations">sr_locations</string>
     
     <string name="preftag_od_duration_off">od_duration_off</string>
     <string name="preftag_od_duration_on">od_duration_on</string>

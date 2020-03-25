@@ -17,10 +17,8 @@ public class PreferencesManager {
     public String base_error_message = "Error: Invalid settings configured so task cannot run. Please adjust settings and restart the task:\n\n";
     public String data_headers = "taskId, trialCounter, faceRecogPrediction, overallTrialOutcome, photoTimestamp, eventTimestamp, task manager code, task specific event codes";
 
-    public static boolean debug, bluetooth, camera, facerecog, savefacerecogarrays, restartoncrash,
-            sound, autostart, autostop, skip_go_cue=false, dimscreen, handle_feedback;
+    public static boolean debug, bluetooth, camera, facerecog, restartoncrash, sound, autostart, autostop, skip_go_cue=false;
     public static int sound_to_play;
-    public static int dimscreenlevel, dimscreentime;
     public static int num_reward_chans, default_rew_chan, max_reward_channels;
     public static int rewardduration, responseduration, timeoutduration;
     public static int autostart_hour, autostop_hour, autostart_min, autostop_min;
@@ -45,8 +43,6 @@ public class PreferencesManager {
         bluetooth = sharedPrefs.getBoolean(r.getString(R.string.preftag_bluetooth), r.getBoolean(R.bool.default_bluetooth));
         camera = sharedPrefs.getBoolean(r.getString(R.string.preftag_camera), r.getBoolean(R.bool.default_camera));
         facerecog = sharedPrefs.getBoolean(r.getString(R.string.preftag_facerecog), r.getBoolean(R.bool.default_facerecog));
-        savefacerecogarrays = sharedPrefs.getBoolean(r.getString(R.string.preftag_savefacerecogarrays), r.getBoolean(R.bool.default_savefacerecogarrays));
-        dimscreen = sharedPrefs.getBoolean(r.getString(R.string.preftag_dimscreen), r.getBoolean(R.bool.default_dimscreen));
         restartoncrash = sharedPrefs.getBoolean(r.getString(R.string.preftag_restartoncrash), r.getBoolean(R.bool.default_restartoncrash));
         sound = sharedPrefs.getBoolean(r.getString(R.string.preftag_sound), r.getBoolean(R.bool.default_sound));
         autostart = sharedPrefs.getBoolean(r.getString(R.string.preftag_autostart), r.getBoolean(R.bool.default_autostart));
@@ -54,9 +50,6 @@ public class PreferencesManager {
 
         camera_to_use = sharedPrefs.getInt(r.getString(R.string.preftag_camera_to_use), r.getInteger(R.integer.default_camera_to_use));
         sound_to_play = sharedPrefs.getInt(r.getString(R.string.preftag_sound_to_play), 0);
-
-        dimscreenlevel = Integer.valueOf(sharedPrefs.getString(r.getString(R.string.preftag_dimscreenlevel), "5"));
-        dimscreentime = sharedPrefs.getInt(r.getString(R.string.preftag_dimscreentime),  r.getInteger(R.integer.default_dimscreentime));
 
         max_reward_channels = Integer.valueOf(mContext.getString(R.string.max_reward_channels));
         num_reward_chans = sharedPrefs.getInt(r.getString(R.string.preftag_num_rew_chans), r.getInteger(R.integer.default_num_rew_chans));
@@ -108,8 +101,6 @@ public class PreferencesManager {
         ec_wrong_gocue_pressed = sharedPrefs.getString(r.getString(R.string.preftag_eventcode_wrong_gocue), r.getString(R.string.default_eventcode_wrong_gocue));
         ec_trial_started = sharedPrefs.getString(r.getString(R.string.preftag_eventcode_start_trial), r.getString(R.string.default_eventcode_start_trial));
         ec_trial_prepared = sharedPrefs.getString(r.getString(R.string.preftag_eventcode_trial_prepared), r.getString(R.string.default_eventcode_trial_prepared));
-
-        handle_feedback = true; // Default behaviour, individual tasks can adjust this parameter
 
     }
 
@@ -238,16 +229,6 @@ public class PreferencesManager {
 
     }
 
-    public int dvs_feedback_duration;
-    public boolean dvs_randomly_place_options, dvs_give_full_map;
-
-    public void DiscreteValueSpace() {
-        dvs_feedback_duration = sharedPrefs.getInt(r.getString(R.string.preftag_dvs_feedback_duration), r.getInteger(R.integer.default_dvs_feedback_duration));
-        dvs_randomly_place_options = sharedPrefs.getBoolean(r.getString(R.string.preftag_dvs_randomly_place_options), r.getBoolean(R.bool.default_dvs_randomly_place_options));
-        dvs_give_full_map = sharedPrefs.getBoolean(r.getString(R.string.preftag_dvs_give_full_map), r.getBoolean(R.bool.default_dvs_give_full_map));
-        handle_feedback = false;
-    }
-
     public int ts_transition_prob, ts_go_cue_reward_amount, ts_trial_reward_amount, ts_intertrial_interval;
     public int ts_low_reward_percent, ts_high_reward_percent;
     public int ts_rew_change_interval;
@@ -295,7 +276,7 @@ public class PreferencesManager {
         sr_duration_off = sharedPrefs.getInt(r.getString(R.string.preftag_sr_duration_off), r.getInteger(R.integer.default_sr_duration_off));
         sr_duration_on = sharedPrefs.getInt(r.getString(R.string.preftag_sr_duration_on), r.getInteger(R.integer.default_sr_duration_on));
         sr_num_stim = sharedPrefs.getInt(r.getString(R.string.preftag_sr_num_stimuli), r.getInteger(R.integer.default_sr_num_stimuli));
-        sr_locations = Integer.valueOf(sharedPrefs.getString(r.getString(R.string.preftag_sr_locations), "2"));
+        sr_locations = sharedPrefs.getInt(r.getString(R.string.preftag_sr_locations), r.getInteger(R.integer.default_sr_locations));
     } 
     
     public int od_duration_on, od_duration_off, od_num_stim, od_num_distractors, od_start_delay;

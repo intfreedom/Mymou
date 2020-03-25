@@ -174,11 +174,11 @@ public class TaskSequentialLearning extends Task {
                     break;
                 case id_corr_choice:
                     logEvent("Correct choice button pressed", callback);
-                    endOfTrial(true, callback, prefManager);
+                    endOfTrial(true, callback);
                     break;
                 case id_incorr_choice:
                     logEvent("Incorrect choice button pressed", callback);
-                    endOfTrial(false, callback, prefManager);
+                    endOfTrial(false, callback);
                     break;
             }
         }

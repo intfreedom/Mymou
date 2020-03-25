@@ -27,8 +27,6 @@
     <integer name="default_taskbackgroundcolour">0</integer>
     <integer name="default_rewardbackgroundcolour">14</integer>
     <integer name="default_timeoutbackgroundcolour">6</integer>
-    <integer name="default_dimscreenamount">6</integer>
-    <integer name="default_dimscreentime">10</integer>
     <integer name="default_bordercolour">1</integer>
 
     <integer name="default_bordersize">20</integer>
@@ -58,9 +56,6 @@
     <integer name="default_sl_map_selected">0</integer>
     <integer name="default_sl_seq_length">7</integer>
 
-    <integer name="default_dvs_feedback_duration">5000</integer>
-
-
     <integer name="default_pr_cue_colour">6</integer>
     <integer name="default_pr_animation_duration">450</integer>
 
@@ -71,8 +66,8 @@
     <integer name="default_ea_variance">1</integer>
 
     <integer name="default_sr_num_stimuli">1</integer>
-    <integer name="default_sr_locations">2</integer>
-    <integer name="default_sr_duration_on">800</integer>
+    <integer name="default_sr_locations">8</integer>
+    <integer name="default_sr_duration_on">500</integer>
     <integer name="default_sr_duration_off">1500</integer>
     
     <integer name="default_od_num_distractors">3</integer>

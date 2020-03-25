@@ -28,6 +28,7 @@ import mymou.task.backend.UtilsTask;
  *
  * The length of each sequence, and timing properties of the movie, can be altered in the options menu
  *
+ * TODO: Implement logging of task variables
  */
 public class TaskSpatialResponse extends Task {
 
@@ -114,13 +115,16 @@ public class TaskSpatialResponse extends Task {
         prefManager = new PreferencesManager(getContext());
         prefManager.SpatialResponse();
 
+        int locations = prefManager.sr_locations;
+        if (locations<3) {locations=2;}else if (locations<5) {locations=4;}else {locations = 8;}
+
         choice_counter = 0;
         task_phase = 0;
-        cues = new Button[prefManager.sr_locations];
+        cues = new Button[locations];
 
         // Choose cues (without replacement)
         chosen_cues = new int[prefManager.sr_num_stim];
-        boolean[] chosen_cues_b = UtilsSystem.getBooleanFalseArray(prefManager.sr_locations);
+        boolean[] chosen_cues_b = UtilsSystem.getBooleanFalseArray(locations);
 
         for (int i = 0; i < prefManager.sr_num_stim; i++) {
             chosen_cues[i] = UtilsTask.chooseValueNoReplacement(chosen_cues_b);
@@ -148,7 +152,7 @@ public class TaskSpatialResponse extends Task {
             layout.addView(cues[i]);
         }
 
-        switch (prefManager.sr_locations) {
+        switch (locations) {
             case 2:
                 cues[0].setX(575);
                 cues[1].setX(575);
@@ -208,11 +212,11 @@ public class TaskSpatialResponse extends Task {
 
             if (task_phase < 3) {
                 logEvent("Stimulus cue rather than decision cue clicked!!!", callback);
-                endOfTrial(false, callback, prefManager);
+                endOfTrial(false, callback);
             }
             else if (choice_counter == prefManager.sr_num_stim | !correct_chosen) {
                 logEvent("End of trial, correct outcome:"+correct_chosen, callback);
-                endOfTrial(correct_chosen, callback, prefManager);
+                endOfTrial(correct_chosen, callback);
             } else {
                 logEvent("Disabling cue"+view.getId(), callback);
                 UtilsTask.toggleCue(cues[view.getId()], false);
