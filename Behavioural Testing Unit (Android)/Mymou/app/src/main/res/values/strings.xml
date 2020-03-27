@@ -28,6 +28,7 @@
         <item>Spatial response</item>
         <item>Sequential Learning</item>
         <item>Random dot motion</item>
+        <item>Transitive Inference</item>
     </string-array>
 
     <string-array name="task_descriptions">

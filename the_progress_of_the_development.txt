@@ -1,0 +1,75 @@
+20200325
+1.开始TaskTransitiveInference design;
+1.1
+把A(1-10的图片放入)，把B(11-20de图片放入)；
+
+
+日志文件：
+endOfTrial(successfulTrial, rew_scalar, callback);
+successfulTrial点击是否正确；
+// Scalar if you want to increase the reward on a particular trial (by multiplication)
+    private static int rew_scalar = 1;
+// Identifier for which monkey is currently playing the task
+    private static int current_monkey, monkey_o =0, monkey_v =1;
+开启面部识别之后，可以知道是哪只猴子，默认current_monkey=0；
+
+这里可以使图片的位置随意动；
+// Randomise cue locations
+        UtilsTask.randomlyPositionCues(cues,  new UtilsTask().getPossibleCueLocs(getActivity()));
+
+把图片固定在中心对称位置；修改上面这个函数；
+这个图像的大小默认为300；("cue_size",300)
+cue_size = sharedPrefs.getInt(r.getString(R.string.preftag_cue_size), r.getInteger(R.integer.default_cuesize));
+
+给出所用可能的返回位置，用像素表示；
+// Find possible locs along each dimension
+        int[] xlocs = calculateLocs(screenWidth, totalImageSize);
+        int[] ylocs = calculateLocs(screenHeight, totalImageSize);
+
+参照TaskSpatialResponse.java的方法；移动位置方法；
+
+
+可以参考其他任何，实现图像的切换；
+
+20200326
+task加入列表，activity_main_menu.xml；
+<Spinner
+    android:id="@+id/spinnerTaskMenu"
+MainMenu.java line117
+  Spinner spinner = (Spinner) findViewById(R.id.spinnerTaskMenu);
+这里用到这个id;
+
+line86执行intent;
+
+
+
+后面就是选择，然后点击方框，出来TaskExample.java;
+return inflater.inlfater(R.layout.activity_task_example, container, false);
+开始loop.java就出来那两个选择的按钮；
+
+同时修改，strings.xml文件，line16
+<string-array name="available_tasks">
+        <item>Training 1: Full screen cue</item>
+        <item>Training 2: Shrinking central cue</item>
+        <item>Training 3: Shrinking moving cue</item>
+        <item>Training 4: Small Moving cue</item>
+        <item>Training 5: Two step</item>
+        <item>Example task</item>
+.........................................................
+        <item>Sequential Learning</item>
+        <item>Random dot motion</item>
+
+H05正常状态，蓝牙闪烁两下，停1s左右
+
+/*
+MainMenu.java的第288行；
+taskSelected < 5，为何没有等于5的情况，就是task_example
+*/
+
+/*
+TaskTransitiveInference.java中的line68
+// Randomise cue locations
+        UtilsTask.randomlyPositionCues(cues,  new UtilsTask().getPossibleCueLocs(getActivity()));
+//以下这些注释掉就可以了，证明，前期写的相关的都是对的；
+*/
+
