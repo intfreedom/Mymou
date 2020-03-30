@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
 
@@ -12,6 +13,7 @@ import mymou.R;
 import mymou.Utils.UtilsSystem;
 import mymou.task.backend.TaskInterface;
 import mymou.task.backend.UtilsTask;
+import java.util.Random;
 
 public class TaskTransitiveInference extends Task implements View.OnClickListener{
 
@@ -66,26 +68,21 @@ public class TaskTransitiveInference extends Task implements View.OnClickListene
         UtilsSystem.setOnClickListenerLoop(cues, this);
 
         // Randomise cue locations
-        UtilsTask.randomlyPositionCues(cues,  new UtilsTask().getPossibleCueLocs(getActivity()));
-//以下这些注释掉就可以了，证明，前期写的相关的都是对的；
-        //width = new UtilsTask().getPossibleCueLocs(getActivity()).xlocs;
+//        UtilsTask.randomlyPositionCues(cues,  new UtilsTask().getPossibleCueLocs(getActivity()));
+        Random r= new Random();
+        int choice = r.nextInt(2);
+        if (choice==1){
+            cues[0].setX(150);//Monkey O Cue1
+            cues[1].setX(500);//Monkey O Cue2
+            cues[0].setY(500);//Monkey O Cue1
+            cues[1].setY(500);//Monkey O Cue2
+        }else {
+            cues[1].setX(150);//Monkey O Cue1
+            cues[0].setX(500);//Monkey O Cue2
+            cues[1].setY(500);//Monkey O Cue1
+            cues[0].setY(500);//Monkey O Cue2
+        }
 
-//        ConstraintLayout layout = getView().findViewById(R.id.parent_task_empty);
-//
-//        for (int i = 0; i < cues.length; i++) {
-//            cues[i] = new Button(getContext());
-//            cues[i].setWidth(75);
-//            cues[i].setHeight(75);
-//            cues[i].setBackgroundDrawable(drawable_grey);
-//            cues[i].setId(i);
-////            cues[i].setOnClickListener(buttonClickListener);
-//            layout.addView(cues[i]);
-//        }
-//
-//        cues[0].setX(575);
-//        cues[1].setX(575);
-//        cues[0].setY(400);
-//        cues[1].setY(1400);
     }
 
     /**
@@ -96,8 +93,26 @@ public class TaskTransitiveInference extends Task implements View.OnClickListene
         // Monkey 0 cues
         cues_all[monkey_o][0] = getView().findViewById(R.id.buttonCue1MonkO);
         cues_all[monkey_o][1] = getView().findViewById(R.id.buttonCue2MonkO);
+        cues_all[monkey_o][0].setBackgroundResource(R.drawable.a1);
+        cues_all[monkey_o][0].setBackgroundResource(R.drawable.aaaaa);
+//默认开始为A（如果有需要taskseting中设置一个开始的训练集），即1-10,
+        String start_sequence = "A";
+        int score=0;
 
-        // Monkey 1's cues
+        switch (start_sequence) {
+            // If they pressed the correct cue, then set the bool to true
+            case "A":
+                if(score>0.9){
+                    cues_all[monkey_o][0].setBackgroundResource(R.drawable.slabb);//等于下一个序列；
+                }else {
+                    cues_all[monkey_o][0].setBackgroundResource(R.drawable.a1);//等于所选值；
+                }
+                break;
+            case "B":
+
+                break;
+        }
+
         cues_all[monkey_v][0] = getView().findViewById(R.id.buttonCue1MonkV);
         cues_all[monkey_v][1] = getView().findViewById(R.id.buttonCue2MonkV);
     }

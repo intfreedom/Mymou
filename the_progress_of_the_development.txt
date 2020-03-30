@@ -73,3 +73,52 @@ TaskTransitiveInference.java中的line68
 //以下这些注释掉就可以了，证明，前期写的相关的都是对的；
 */
 
+20200330
+可以实现固定按钮位置，cues[0].setX(150);//Monkey O Cue1
+        cues[1].setX(500);//Monkey O Cue2
+        cues[0].setY(500);//Monkey O Cue1
+        cues[1].setY(500);//Monkey O Cue2
+如何把图片插入到按钮上；
+可以参考，D:\02ability\LearnJava\Mymou\Mymou-master20191011TwoFruitsMoveBananaRewardModifyLogOnlyBanana\Behavioural Testing Unit (Android)
+以及其对日志文件的修改；
+
+把按钮的参数由
+<Button
+            android:text="Monkey V\n Cue 1"
+            android:layout_width="175dp"
+            android:layout_height="175dp"
+            android:textSize="30sp"
+            android:id="@+id/buttonCue1MonkV"/>
+修改为
+ <Button
+            android:text="  "
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="30sp"
+            android:id="@+id/buttonCue2MonkO"
+            android:layout_gravity="center|bottom"
+            android:gravity="center"
+            android:background="@drawable/aa"/>
+
+最麻烦的办法就是把70个图片都放在同一个位置，然后，选择性的显示；
+设置按钮的属性；在layout中的.xml文件也可以设置属性，drawable文件一般存的是图片；
+如何在activity里设置按钮的图片？
+ private void assignObjects() {
+        // Monkey 0 cues
+        cues_all[monkey_o][0] = getView().findViewById(R.id.buttonCue1MonkO);
+        cues_all[monkey_o][1] = getView().findViewById(R.id.buttonCue2MonkO);
+
+一句话，就搞定，在activity中设置，button的背景图片；
+cues_all[monkey_o][0].setBackgroundResource(R.drawable.aaaaa);
+3.
+下载可以加载图片了，然后考虑，如何把70个图片都加载上；
+
+但是若是更改文件.xml中的id号，@+id/buttonCue1MonkO；
+因为由两个文件都有这个号码，后续会不会出错；
+改了之后，例如ti_buttonCue1MonkO就无法出现
+后来的奖励选项，一定是这个跟奖励选项相关的，的buttonCue1MonkO没有修改，可以更进出看下；
+3.1
+android drawable下无法添加子目录，而且图片文件名必须是以字母开头，所以需要写个python脚本
+把刺激集的名称前全部加一个a;
+3.2
+android开发如何再代码中间加上调试信息，输出需要的变量值；
