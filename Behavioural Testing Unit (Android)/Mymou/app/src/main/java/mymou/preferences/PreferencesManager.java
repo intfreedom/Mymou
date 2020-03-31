@@ -311,4 +311,13 @@ public class PreferencesManager {
         rdm_colour_choice = colors[choice_colour];
     }
 
+    public int start_sequence;
+
+    public void TransitiveInference() {
+        start_sequence = sharedPrefs.getInt(r.getString(R.string.preftag_start_sequence), r.getInteger(R.integer.default_start_sequence));
+        sr_duration_on = sharedPrefs.getInt(r.getString(R.string.preftag_sr_duration_on), r.getInteger(R.integer.default_sr_duration_on));
+        sr_num_stim = sharedPrefs.getInt(r.getString(R.string.preftag_sr_num_stimuli), r.getInteger(R.integer.default_sr_num_stimuli));
+        sr_locations = sharedPrefs.getInt(r.getString(R.string.preftag_sr_locations), r.getInteger(R.integer.default_sr_locations));
+    }
+
 }

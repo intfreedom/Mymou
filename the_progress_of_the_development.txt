@@ -122,3 +122,56 @@ android drawable下无法添加子目录，而且图片文件名必须是以字母开头，所以需要写个py
 把刺激集的名称前全部加一个a;
 3.2
 android开发如何再代码中间加上调试信息，输出需要的变量值；
+3.3
+设置断点，发现每次出现的时间；按钮出现的时间，
+
+每次调用assignObjects()时就有一个新的界面？算作一次新的trail;
+
+4.
+main主界面多了一个Task Settings
+是因为，PreferencesManager.java中多了一个public void SpatialResponse(){}函数；
+然后在TaskManager.java中private void loadtask(){}中加入了一个case
+在使用的activity中加入prefManager = new PreferencesManager(getContext());
+        prefManager.SpatialResponse();
+这样还是无法显示task settings;
+所以有其他联系，想到activity_main_menu.xml文件中的区别；
+在xml文件夹里看到，一个preferences_task_spatialresponse.xml文件；
+而且这里，其他所有带task setting的任务，都在这里有个相应的.xml文件；并且规定了task setting里所有属性的最大值；
+右击 find usages,发现在哪里引用了这个文件；
+PrefsFragCommon.java;在这个文件了关联了preferences_task_spatialresponse.xml还是不可以；？？？
+比如说这里有一句和这个功能相关的；<string name="preftag_task_sr_settings">preftag_task_sr_settings</string>
+右击find usages可以查看所有的与这个相关的同步修改；
+
+发现列表中5和15是没有的tasksetting，一定taskid有一个没有设置正确
+在MainMenu.java中第五个也就task_example是false，而新增加的还没有；
+<string-array name="task_has_settings">
+        <item>true</item>
+        <item>true</item>
+        <item>true</item>
+        <item>true</item>
+        <item>true</item>
+        <item>false</item>
+        <item>true</item>
+        <item>true</item>
+        <item>true</item>
+        <item>true</item>
+        <item>true</item>
+        <item>true</item>
+        <item>true</item>
+        <item>true</item>
+    </string-array>
+添加一个true之后，task settings可以出现，但是，不是它自己的而是复制的另一个的为啥？
+一直会链接到preferences_task_spatialresponse.xml不知道为啥？
+调试了半天，就发现这个问题；
+<string name="preftag_task_ti_settings">preftag_task_sl_settings</string>
+这里的sl没有改为ti，所以默认一直往preferences_task_spatialresponse.xml跳转；
+发现目标函数，用find usages可以判定在哪些地方被使用，或者用断点找到要被使用的；
+
+在taskManager.java中，不必使用case13，为何少一个TaskRandomDotMotion();因为这里只有需要使用
+因为没有使用preferencesManager.TaskRandomDotMotion();
+
+*******可以仿照，TaskDiscreteMazeMapParams.java里的，public void LoadImageList(){}把所有照片做一个列表**********
+
+
+
+

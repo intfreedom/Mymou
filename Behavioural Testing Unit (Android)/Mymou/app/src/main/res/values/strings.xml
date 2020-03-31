@@ -143,6 +143,7 @@
     <string name="preftag_camera_to_use">preftag_camera_to_use</string>
     <string name="preftag_num_rew_chans">preftag_num_rew_chans</string>
     <string name="preftag_default_rew_chan">preftag_default_rew_chan</string>
+    <string name="preftag_task_ti_settings">preftag_task_ti_settings</string>
 
     <string name="preftag_od_corr_cols">colours_obj_disc_corr_cues</string>
     <string name="preftag_od_incorr_cols">colours_obj_disc_incorr_cues</string>
@@ -214,6 +215,8 @@
     <string name="preftag_rdm_colour_bg">preftag_rdm_colour_bg</string>
     <string name="preftag_rdm_colour_choice">preftag_rdm_colour_choice</string>
     <string name="preftag_rdm_colour_dots">preftag_rdm_colour_dots</string>
+
+    <string name="preftag_start_sequence">start_sequence</string>
 
     <string-array name="error_messages">
         <item>Bluetooth couldn\'t connect to reward system (to run task without reward system, disable the reward system
