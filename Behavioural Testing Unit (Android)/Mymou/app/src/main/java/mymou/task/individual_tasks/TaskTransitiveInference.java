@@ -102,32 +102,183 @@ public class TaskTransitiveInference extends Task implements View.OnClickListene
         prefManager = new PreferencesManager(getContext());
         prefManager.TransitiveInference();
         // Monkey 0 cues
-        cues_all[monkey_o][0] = getView().findViewById(R.id.buttonCue1MonkO);
-        cues_all[monkey_o][1] = getView().findViewById(R.id.buttonCue2MonkO);
-        cues_all[monkey_o][0].setBackgroundResource(R.drawable.a1);//Monkey O Cue1
-        cues_all[monkey_o][1].setBackgroundResource(R.drawable.aaaaa);//Monkey O Cue2
-//默认开始为A（如果有需要taskseting中设置一个开始的训练集），即1-10,
+        cues_all[monkey_o][0] = getView().findViewById(R.id.buttonCue1MonkO);//Monkey O Cue1
+        cues_all[monkey_o][1] = getView().findViewById(R.id.buttonCue2MonkO);//Monkey O Cue2
+
         String start_sequence= "A";
-        if(prefManager.start_sequence<10){
-            start_sequence = "A";
-        }
 
         if(trail_number >= 10){
             score = right_choice/trail_number;
         }
 
+        Random random = new Random();
+        int n = random.nextInt(10); //随机选择10个图片中的一个；
+
+        if(prefManager.start_sequence<10){//默认start_sequence=1,开始为A（如果有需要taskseting中设置一个开始的训练集），即1-10,
+            start_sequence = "A";
+        }else if(prefManager.start_sequence<20){
+            start_sequence = "B";
+        }else if(prefManager.start_sequence<30){
+            start_sequence = "C";
+        }else if(prefManager.start_sequence<40){
+            start_sequence = "D";
+        }else if(prefManager.start_sequence<50){
+            start_sequence = "E";
+        }else if(prefManager.start_sequence<60){
+            start_sequence = "F";
+        }else if(prefManager.start_sequence<70){
+            start_sequence = "G";
+        }
+
+        int[] imageListMapA = {
+                R.drawable.ti_1,
+                R.drawable.ti_2,
+                R.drawable.ti_3,
+                R.drawable.ti_4,
+                R.drawable.ti_5,
+                R.drawable.ti_6,
+                R.drawable.ti_7,
+                R.drawable.ti_8,
+                R.drawable.ti_9,
+                R.drawable.ti_10,
+        };
+
+        int[] imageListMapB = {
+                R.drawable.ti_11,
+                R.drawable.ti_12,
+                R.drawable.ti_13,
+                R.drawable.ti_14,
+                R.drawable.ti_15,
+                R.drawable.ti_16,
+                R.drawable.ti_17,
+                R.drawable.ti_18,
+                R.drawable.ti_19,
+                R.drawable.ti_20,
+        };
+
+        int[] imageListMapC = {
+                R.drawable.ti_21,
+                R.drawable.ti_22,
+                R.drawable.ti_23,
+                R.drawable.ti_24,
+                R.drawable.ti_25,
+                R.drawable.ti_26,
+                R.drawable.ti_27,
+                R.drawable.ti_28,
+                R.drawable.ti_29,
+                R.drawable.ti_30,
+        };
+
+        int[] imageListMapD = {
+                R.drawable.ti_31,
+                R.drawable.ti_32,
+                R.drawable.ti_33,
+                R.drawable.ti_34,
+                R.drawable.ti_35,
+                R.drawable.ti_36,
+                R.drawable.ti_37,
+                R.drawable.ti_38,
+                R.drawable.ti_39,
+                R.drawable.ti_40,
+        };
+
+        int[] imageListMapE = {
+                R.drawable.ti_41,
+                R.drawable.ti_42,
+                R.drawable.ti_43,
+                R.drawable.ti_44,
+                R.drawable.ti_45,
+                R.drawable.ti_46,
+                R.drawable.ti_47,
+                R.drawable.ti_48,
+                R.drawable.ti_49,
+                R.drawable.ti_50,
+        };
+
+        int[] imageListMapF = {
+                R.drawable.ti_51,
+                R.drawable.ti_52,
+                R.drawable.ti_53,
+                R.drawable.ti_54,
+                R.drawable.ti_55,
+                R.drawable.ti_56,
+                R.drawable.ti_57,
+                R.drawable.ti_58,
+                R.drawable.ti_59,
+                R.drawable.ti_60,
+        };
+
+        int[] imageListMapG = {
+                R.drawable.ti_61,
+                R.drawable.ti_62,
+                R.drawable.ti_63,
+                R.drawable.ti_64,
+                R.drawable.ti_65,
+                R.drawable.ti_66,
+                R.drawable.ti_67,
+                R.drawable.ti_68,
+                R.drawable.ti_69,
+                R.drawable.ti_70,
+        };
+
         switch (start_sequence) {
             // If they pressed the correct cue, then set the bool to true
             case "A":
-                if(score>0.9){
-                    cues_all[monkey_o][0].setBackgroundResource(R.drawable.slabb);//等于下一个序列；
-                }else {
-                    cues_all[monkey_o][0].setBackgroundResource(R.drawable.a1);//等于所选值；
+                if(score>0.9){  //等于下一个序列；
+                    cues_all[monkey_o][0].setBackgroundResource(imageListMapB[n]);
+                    cues_all[monkey_o][1].setBackgroundResource(imageListMapC[n]);
+                }else {//等于所选值；
+                    cues_all[monkey_o][0].setBackgroundResource(imageListMapA[n]);
+                    cues_all[monkey_o][1].setBackgroundResource(imageListMapB[n]);
                 }
                 break;
             case "B":
-
+                if(score>0.9){
+                    cues_all[monkey_o][0].setBackgroundResource(imageListMapC[n]);//等于下一个序列；
+                    cues_all[monkey_o][1].setBackgroundResource(imageListMapD[n]);//Monkey O Cue2
+                }else {
+                    cues_all[monkey_o][0].setBackgroundResource(imageListMapB[n]);//等于所选值；
+                    cues_all[monkey_o][1].setBackgroundResource(imageListMapC[n]);//Monkey O Cue2
+                }
                 break;
+            case "C":
+                if(score>0.9){
+                    cues_all[monkey_o][0].setBackgroundResource(imageListMapD[n]);//等于下一个序列；
+                    cues_all[monkey_o][1].setBackgroundResource(imageListMapE[n]);//Monkey O Cue2
+                }else {
+                    cues_all[monkey_o][0].setBackgroundResource(imageListMapC[n]);//等于所选值；
+                    cues_all[monkey_o][1].setBackgroundResource(imageListMapD[n]);//Monkey O Cue2
+                }
+                break;
+            case "D":
+                if(score>0.9){
+                    cues_all[monkey_o][0].setBackgroundResource(imageListMapE[n]);//等于下一个序列；
+                    cues_all[monkey_o][1].setBackgroundResource(imageListMapF[n]);//Monkey O Cue2
+                }else {
+                    cues_all[monkey_o][0].setBackgroundResource(imageListMapD[n]);//等于所选值；
+                    cues_all[monkey_o][1].setBackgroundResource(imageListMapE[n]);//Monkey O Cue2
+                }
+                break;
+            case "E":
+                if(score>0.9){
+                    cues_all[monkey_o][0].setBackgroundResource(imageListMapE[n]);//等于下一个序列；
+                    cues_all[monkey_o][1].setBackgroundResource(imageListMapF[n]);//Monkey O Cue2
+                }else {
+                    cues_all[monkey_o][0].setBackgroundResource(imageListMapF[n]);//等于所选值；
+                    cues_all[monkey_o][1].setBackgroundResource(imageListMapG[n]);//Monkey O Cue2
+                }
+                break;
+            default:
+                if(score>0.9){
+                    cues_all[monkey_o][0].setBackgroundResource(imageListMapF[n]);//等于下一个序列；
+                    cues_all[monkey_o][1].setBackgroundResource(imageListMapG[n]);//Monkey O Cue2
+                }else {
+                    cues_all[monkey_o][0].setBackgroundResource(imageListMapF[n]);//等于所选值；
+                    cues_all[monkey_o][1].setBackgroundResource(imageListMapG[n]);//Monkey O Cue2
+                }
+                break;
+
+
         }
 
         cues_all[monkey_v][0] = getView().findViewById(R.id.buttonCue1MonkV);

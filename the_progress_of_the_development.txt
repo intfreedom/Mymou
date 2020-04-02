@@ -171,7 +171,11 @@ PrefsFragCommon.java;ÔÚÕâ¸öÎÄ¼şÁË¹ØÁªÁËpreferences_task_spatialresponse.xml»¹ÊÇ²
 ÒòÎªÃ»ÓĞÊ¹ÓÃpreferencesManager.TaskRandomDotMotion();
 
 *******¿ÉÒÔ·ÂÕÕ£¬TaskDiscreteMazeMapParams.javaÀïµÄ£¬public void LoadImageList(){}°ÑËùÓĞÕÕÆ¬×öÒ»¸öÁĞ±í**********
+android studioÍ¼Æ¬µÄÃüÃû¹æÔò£ºÖ»ÄÜÒÔĞ¡Ğ´×ÖÄ¸ºÍÏÂ»®Ïß×öÊ××ÖÄ¸£¬ËæºóµÄÃû×ÖÖĞÖ»ÄÜ³öÏÖ [a-z0-9_.] 
 
+ava ´ÓListÖĞËæ»úÈ¡³öÒ»¸öÔªËØ
 
-
-
+1  List<Integer> list = new ArrayList<>();
+2         Random random = new Random();
+3         int n = random.nextInt(list.size());
+4         list.get(n);

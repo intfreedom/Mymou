@@ -9,7 +9,8 @@
         <mymou.preferences.SeekBarPreferenceCustom
                 android:defaultValue="@integer/default_start_sequence"
                 app:key="@string/preftag_start_sequence"
-                app:title="Number of start sequence, 1-10 is 'A' "
+                app:title="Number of start sequence:"
+                android:summary="1-10 is 'A', 11-20 is 'B', 21-30 is 'C', 31-40 is 'D', 41-50 is 'E', 51-60 is 'F', 61-70 is 'G'"
                 android:max="70"/>
 
     </PreferenceCategory>
