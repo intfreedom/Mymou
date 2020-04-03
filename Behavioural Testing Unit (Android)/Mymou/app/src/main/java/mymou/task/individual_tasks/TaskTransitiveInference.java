@@ -221,6 +221,9 @@ public class TaskTransitiveInference extends Task implements View.OnClickListene
                 R.drawable.ti_70,
         };
 
+        int[][] image_array = {imageListMapA,imageListMapB,imageListMapC,imageListMapD,imageListMapE,imageListMapF,imageListMapG};
+        int n_choice = random.nextInt(6);
+
         switch (start_sequence) {
             // If they pressed the correct cue, then set the bool to true
             case "A":
@@ -261,11 +264,11 @@ public class TaskTransitiveInference extends Task implements View.OnClickListene
                 break;
             case "E":
                 if(score>0.9){
-                    cues_all[monkey_o][0].setBackgroundResource(imageListMapE[n]);//等于下一个序列；
-                    cues_all[monkey_o][1].setBackgroundResource(imageListMapF[n]);//Monkey O Cue2
-                }else {
-                    cues_all[monkey_o][0].setBackgroundResource(imageListMapF[n]);//等于所选值；
+                    cues_all[monkey_o][0].setBackgroundResource(imageListMapF[n]);//等于下一个序列；
                     cues_all[monkey_o][1].setBackgroundResource(imageListMapG[n]);//Monkey O Cue2
+                }else {
+                    cues_all[monkey_o][0].setBackgroundResource(imageListMapE[n]);//等于所选值；
+                    cues_all[monkey_o][1].setBackgroundResource(imageListMapF[n]);//Monkey O Cue2
                 }
                 break;
             default:
@@ -273,8 +276,8 @@ public class TaskTransitiveInference extends Task implements View.OnClickListene
                     cues_all[monkey_o][0].setBackgroundResource(imageListMapF[n]);//等于下一个序列；
                     cues_all[monkey_o][1].setBackgroundResource(imageListMapG[n]);//Monkey O Cue2
                 }else {
-                    cues_all[monkey_o][0].setBackgroundResource(imageListMapF[n]);//等于所选值；
-                    cues_all[monkey_o][1].setBackgroundResource(imageListMapG[n]);//Monkey O Cue2
+                    cues_all[monkey_o][0].setBackgroundResource(image_array[n_choice][n]);//等于所选值；
+                    cues_all[monkey_o][1].setBackgroundResource(image_array[n_choice+1][n]);//Monkey O Cue2
                 }
                 break;
 
