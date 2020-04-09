@@ -41,6 +41,7 @@ public class TaskTransitiveInference extends Task implements View.OnClickListene
     private static int right_choice = 0;
     private static double score = 0.0;
     private static PreferencesManager prefManager;
+    private String start_sequence= "A";
 
     /**
      * Function called when task first loaded (before the UI is loaded)
@@ -76,7 +77,7 @@ public class TaskTransitiveInference extends Task implements View.OnClickListene
         UtilsSystem.setOnClickListenerLoop(cues, this);
 
         // Randomise cue locations
-//        UtilsTask.randomlyPositionCues(cues,  new UtilsTask().getPossibleCueLocs(getActivity()));
+        //UtilsTask.randomlyPositionCues(cues,  new UtilsTask().getPossibleCueLocs(getActivity()));
         Random r= new Random();
         int choice = r.nextInt(2);
         if (choice==1){
@@ -104,8 +105,6 @@ public class TaskTransitiveInference extends Task implements View.OnClickListene
         // Monkey 0 cues
         cues_all[monkey_o][0] = getView().findViewById(R.id.buttonCue1MonkO);//Monkey O Cue1
         cues_all[monkey_o][1] = getView().findViewById(R.id.buttonCue2MonkO);//Monkey O Cue2
-
-        String start_sequence= "A";
 
         if(trail_number >= 10){
             score = right_choice/trail_number;
@@ -228,8 +227,13 @@ public class TaskTransitiveInference extends Task implements View.OnClickListene
             // If they pressed the correct cue, then set the bool to true
             case "A":
                 if(score>0.9){  //等于下一个序列；
+
                     cues_all[monkey_o][0].setBackgroundResource(imageListMapB[n]);
                     cues_all[monkey_o][1].setBackgroundResource(imageListMapC[n]);
+                    start_sequence = "B";
+                    score = 0.0;
+                    right_choice = 0;
+                    trail_number = 0;
                 }else {//等于所选值；
                     cues_all[monkey_o][0].setBackgroundResource(imageListMapA[n]);
                     cues_all[monkey_o][1].setBackgroundResource(imageListMapB[n]);
@@ -239,6 +243,10 @@ public class TaskTransitiveInference extends Task implements View.OnClickListene
                 if(score>0.9){
                     cues_all[monkey_o][0].setBackgroundResource(imageListMapC[n]);//等于下一个序列；
                     cues_all[monkey_o][1].setBackgroundResource(imageListMapD[n]);//Monkey O Cue2
+                    start_sequence = "C";
+                    score = 0.0;
+                    right_choice = 0;
+                    trail_number = 0;
                 }else {
                     cues_all[monkey_o][0].setBackgroundResource(imageListMapB[n]);//等于所选值；
                     cues_all[monkey_o][1].setBackgroundResource(imageListMapC[n]);//Monkey O Cue2
@@ -248,6 +256,10 @@ public class TaskTransitiveInference extends Task implements View.OnClickListene
                 if(score>0.9){
                     cues_all[monkey_o][0].setBackgroundResource(imageListMapD[n]);//等于下一个序列；
                     cues_all[monkey_o][1].setBackgroundResource(imageListMapE[n]);//Monkey O Cue2
+                    start_sequence = "D";
+                    score = 0.0;
+                    right_choice = 0;
+                    trail_number = 0;
                 }else {
                     cues_all[monkey_o][0].setBackgroundResource(imageListMapC[n]);//等于所选值；
                     cues_all[monkey_o][1].setBackgroundResource(imageListMapD[n]);//Monkey O Cue2
@@ -257,6 +269,10 @@ public class TaskTransitiveInference extends Task implements View.OnClickListene
                 if(score>0.9){
                     cues_all[monkey_o][0].setBackgroundResource(imageListMapE[n]);//等于下一个序列；
                     cues_all[monkey_o][1].setBackgroundResource(imageListMapF[n]);//Monkey O Cue2
+                    start_sequence = "E";
+                    score = 0.0;
+                    right_choice = 0;
+                    trail_number = 0;
                 }else {
                     cues_all[monkey_o][0].setBackgroundResource(imageListMapD[n]);//等于所选值；
                     cues_all[monkey_o][1].setBackgroundResource(imageListMapE[n]);//Monkey O Cue2
@@ -266,6 +282,10 @@ public class TaskTransitiveInference extends Task implements View.OnClickListene
                 if(score>0.9){
                     cues_all[monkey_o][0].setBackgroundResource(imageListMapF[n]);//等于下一个序列；
                     cues_all[monkey_o][1].setBackgroundResource(imageListMapG[n]);//Monkey O Cue2
+                    start_sequence = "F";
+                    score = 0.0;
+                    right_choice = 0;
+                    trail_number = 0;
                 }else {
                     cues_all[monkey_o][0].setBackgroundResource(imageListMapE[n]);//等于所选值；
                     cues_all[monkey_o][1].setBackgroundResource(imageListMapF[n]);//Monkey O Cue2
@@ -273,15 +293,13 @@ public class TaskTransitiveInference extends Task implements View.OnClickListene
                 break;
             default:
                 if(score>0.9){
-                    cues_all[monkey_o][0].setBackgroundResource(imageListMapF[n]);//等于下一个序列；
-                    cues_all[monkey_o][1].setBackgroundResource(imageListMapG[n]);//Monkey O Cue2
-                }else {
                     cues_all[monkey_o][0].setBackgroundResource(image_array[n_choice][n]);//等于所选值；
-                    cues_all[monkey_o][1].setBackgroundResource(image_array[n_choice+1][n]);//Monkey O Cue2
+                    cues_all[monkey_o][1].setBackgroundResource(image_array[n_choice+1][n]);
+                }else {
+                    cues_all[monkey_o][0].setBackgroundResource(imageListMapF[n]);//等于所选值；
+                    cues_all[monkey_o][1].setBackgroundResource(imageListMapG[n]);//Monkey O Cue2
                 }
                 break;
-
-
         }
 
         cues_all[monkey_v][0] = getView().findViewById(R.id.buttonCue1MonkV);
