@@ -194,6 +194,20 @@ ava 从List中随机取出一个元素
 1.4选择奖励的时间（第一个时间与上一行第一个时间相同）；
 
 这个日志文件，只有点击了奖励才会提交，没有点击奖励，界面会一直等待，选择的信息（i.e.，log的前三步骤不会出现）
-如果需要争取率的话，是哪一个正确率，是所有trail的正确率，还是单个A-B，B-C等等的正确率；
+如果需要正确率的话，是哪一个正确率，是所有trail的正确率，还是单个A-B，B-C等等的正确率；
+
+TaskManager.java中有一个private static void endOfTrial(String outcome, int newTrialDelay)
+然后又有一个提交数据的过程；commitTrialData(outcome);
+
+鉴于public class TaskTransitiveInference extends Task implements View.OnClickListener
+extends Task，
+但应该是，
+ public void setFragInterfaceListener(TaskInterface callback) {
+        this.callback = callback;
+    }的原因；
+既然，出现了奖励系统的页面，才会继续进行，就看看奖励系统的变化；
 
 */
+
+
+左右次序有问题；更改；结果log
