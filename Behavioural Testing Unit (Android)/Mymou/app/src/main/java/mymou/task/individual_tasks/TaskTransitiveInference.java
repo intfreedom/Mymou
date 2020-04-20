@@ -45,6 +45,7 @@ public class TaskTransitiveInference extends Task implements View.OnClickListene
     private static int right_picture_number = 0;
     private static int wrong_picture_number = 0;
     private static int last_n = 11;
+    private static int location_choice = 0;
 
     /**
      * Function called when task first loaded (before the UI is loaded)
@@ -82,8 +83,8 @@ public class TaskTransitiveInference extends Task implements View.OnClickListene
         // Randomise cue locations
         //UtilsTask.randomlyPositionCues(cues,  new UtilsTask().getPossibleCueLocs(getActivity()));
         Random r= new Random();
-        int choice = r.nextInt(2);
-        if (choice==1){
+        location_choice = r.nextInt(2);
+        if (location_choice==1){
             cues[0].setX(200);//Monkey O Cue1
             cues[1].setX(600);//Monkey O Cue2
             cues[0].setY(700);//Monkey O Cue1
@@ -233,7 +234,6 @@ public class TaskTransitiveInference extends Task implements View.OnClickListene
             // If they pressed the correct cue, then set the bool to true
             case "A":
                 if(score>0.9){  //等于下一个序列；
-
                     cues_all[monkey_o][0].setBackgroundResource(imageListMapB[n]);
                     cues_all[monkey_o][1].setBackgroundResource(imageListMapC[n]);
                     right_picture_number = 11+n;
@@ -354,22 +354,28 @@ public class TaskTransitiveInference extends Task implements View.OnClickListene
         // Now decide what to do based on what cue pressed
         boolean successfulTrial = false;
         int picture_number_pressed = wrong_picture_number;
-        String answer_results = "Wrong";
+        //String answer_results = "Wrong";
         switch (view.getId()) {//图片的ID????
             // If they pressed the correct cue, then set the bool to true
             case R.id.buttonCue1MonkO:
                 successfulTrial = true;
                 right_choice += 1;
                 picture_number_pressed = right_picture_number;
-                answer_results = "Right";
+                //answer_results = "Right";
                 break;
             case R.id.buttonCue2MonkV:
                 successfulTrial = true;
                 break;
         }
 
-        String note = "PictureNumber:"+picture_number_pressed+", ("+right_picture_number+","+wrong_picture_number+")-"+answer_results;
+        //String note = "PictureNumber:"+picture_number_pressed+", ("+right_picture_number+","+wrong_picture_number+")-"+answer_results;
         // Log screen press
+        String note = "PictureNumber:"+picture_number_pressed;
+        if(location_choice==0){//==0使，正确的选项在右边；
+            note += ", ("+wrong_picture_number+","+right_picture_number+")";
+        }else{
+            note += ", ("+right_picture_number+","+wrong_picture_number+")";
+        }
         logEvent(""+note, callback);
 
         // Tell parent (TrialManager.java) the outcome of the trial, which will then respond accordingly
@@ -386,5 +392,4 @@ public class TaskTransitiveInference extends Task implements View.OnClickListene
     public void setFragInterfaceListener(TaskInterface callback) {
         this.callback = callback;
     }
-
 }
