@@ -210,9 +210,6 @@ public class TaskManager extends FragmentActivity implements View.OnClickListene
             case 12:
                 preferencesManager.SequentialLearning();
                 break;
-            case 14:
-                preferencesManager.TransitiveInference();
-                break;//添加task setting;
             default:
                 Log.d(TAG, "No task specified");
                 new Exception("No task specified");
@@ -334,9 +331,6 @@ public class TaskManager extends FragmentActivity implements View.OnClickListene
                 break;
             case 13:
                 task = new TaskRandomDotMotion();
-                break;
-            case 14:
-                task = new TaskTransitiveInference();
                 break;
             default:
                 new Exception("No valid task specified");

@@ -62,9 +62,7 @@ public class PrefsFragCommon extends PreferenceFragmentCompat {
 
             setPreferencesFromResource(R.xml.preferences_task_random_dot_motion, rootKey);
 
-        }else if(prefTag.equals(getString(R.string.preftag_task_ti_settings))){
-            setPreferencesFromResource(R.xml.preferences_task_transitive_inferece, rootKey);
-        }else {
+        } else {
 
             new Exception("Invalid pref tag");
 

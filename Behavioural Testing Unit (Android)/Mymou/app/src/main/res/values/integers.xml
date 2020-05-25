@@ -86,7 +86,5 @@
     <integer name="default_rdm_color_dots">0</integer>
     <integer name="default_rdm_color_choice">1</integer>
 
-    <integer name="default_start_sequence">1</integer>
-
 
 </resources>
