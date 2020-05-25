@@ -24,6 +24,8 @@ import java.nio.ByteBuffer;
  */
 class CameraSavePhoto implements Runnable {
 
+
+
     private String TAG = "CameraSavePhoto";
     private final Image mImage;
     private String timestamp;

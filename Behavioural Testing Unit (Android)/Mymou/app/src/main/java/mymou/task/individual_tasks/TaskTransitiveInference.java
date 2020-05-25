@@ -92,6 +92,7 @@ public class TaskTransitiveInference extends Task implements View.OnClickListene
         }else {
             cues[1].setX(200);
             cues[0].setX(600);
+            //cues[0].setX(800);//just test location;
             cues[1].setY(700);
             cues[0].setY(700);
         }
