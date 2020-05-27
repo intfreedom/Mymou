@@ -162,8 +162,17 @@ public class TaskSpatialResponse extends Task {
 
         for (int i = 0; i < cues.length; i++) {
             cues[i] = new Button(getContext());
-            cues[i].setWidth(275);//75->275
-            cues[i].setHeight(275);//75->275
+            if(locations==2){
+                cues[i].setWidth(275);//75->275
+                cues[i].setHeight(275);//75->275
+            }else if (locations==4){
+                cues[i].setWidth(175);//75->175
+                cues[i].setHeight(175);//75->175
+            }else{
+                cues[i].setWidth(75);
+                cues[i].setHeight(75);
+            }
+
             cues[i].setBackgroundDrawable(drawable_grey);
             cues[i].setId(i);
             cues[i].setOnClickListener(buttonClickListener);
@@ -179,10 +188,10 @@ public class TaskSpatialResponse extends Task {
                 break;
             case 4:
                 // Position cues clockwise from 12:00
-                cues[0].setX(575);
-                cues[1].setX(975);
-                cues[2].setX(575);
-                cues[3].setX(175);
+                cues[0].setX(515);//575->455->515
+                cues[1].setX(915);//975->855->915
+                cues[2].setX(515);//575->455->515
+                cues[3].setX(115);//175->55->115
                 cues[0].setY(400);
                 cues[1].setY(900);
                 cues[2].setY(1400);
