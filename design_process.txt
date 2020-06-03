@@ -212,6 +212,14 @@ extends Task，
 因为没有设置合适的全局变量，每次都会重新读取，最开始设定的值；
 private static String start_sequence= "A";//加一个static，对于不同的对象，都是同一个值。
 private static boolean start_sequence_read = false;//add设置在循环中只读取一次。
+static变量也称作静态变量，静态变量和非静态变量的区别是：静态变量被所有的对象所共享，在内存中只有一个副本，
+它当且仅当在类初次加载时会被初始化。而非静态变量是对象所拥有的，在创建对象的时候被初始化，存在多个副本，各个对象拥有的副本互不影响。
+
+
+以上就是private static String start_sequence= "A";没有加 static，产生错误的原因。
+
+
+https://www.cnblogs.com/dolphin0520/p/3799052.html
 */
 
 
