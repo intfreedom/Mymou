@@ -1,6 +1,7 @@
 package mymou.task.individual_tasks;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,11 +42,12 @@ public class TaskTransitiveInference extends Task implements View.OnClickListene
     private static int right_choice = 0;
     private static double score = 0.0;
     private static PreferencesManager prefManager;
-    private String start_sequence= "A";
+    private static String start_sequence= "A";
     private static int right_picture_number = 0;
     private static int wrong_picture_number = 0;
     private static int last_n = 11;
     private static int location_choice = 0;
+    private static boolean start_sequence_read = false;
 
     /**
      * Function called when task first loaded (before the UI is loaded)
@@ -121,20 +123,24 @@ public class TaskTransitiveInference extends Task implements View.OnClickListene
             n = random.nextInt(10);
         }while (n==last_n);
 
-        if(prefManager.start_sequence<10){//默认start_sequence=1,开始为A（如果有需要taskseting中设置一个开始的训练集），即1-10,
-            start_sequence = "A";
-        }else if(prefManager.start_sequence<20){
-            start_sequence = "B";
-        }else if(prefManager.start_sequence<30){
-            start_sequence = "C";
-        }else if(prefManager.start_sequence<40){
-            start_sequence = "D";
-        }else if(prefManager.start_sequence<50){
-            start_sequence = "E";
-        }else if(prefManager.start_sequence<60){
-            start_sequence = "F";
-        }else if(prefManager.start_sequence<70){
-            start_sequence = "G";
+        if(start_sequence_read == false) {
+            start_sequence_read = true;
+            if (prefManager.start_sequence < 10) {//默认start_sequence=1,开始为A（如果有需要taskseting中设置一个开始的训练集），即1-10,
+                start_sequence = "A";
+                Log.i(start_sequence, "Start_sequence 111");
+            } else if (prefManager.start_sequence < 20) {
+                start_sequence = "B";
+            } else if (prefManager.start_sequence < 30) {
+                start_sequence = "C";
+            } else if (prefManager.start_sequence < 40) {
+                start_sequence = "D";
+            } else if (prefManager.start_sequence < 50) {
+                start_sequence = "E";
+            } else if (prefManager.start_sequence < 60) {
+                start_sequence = "F";
+            } else if (prefManager.start_sequence < 70) {
+                start_sequence = "G";
+            }
         }
 
         int[] imageListMapA = {

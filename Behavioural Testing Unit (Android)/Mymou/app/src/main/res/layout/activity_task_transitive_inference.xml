@@ -6,7 +6,7 @@
 
     <!--            android:text="Monkey 0\n Cue 1"-->
     <Button
-            android:text="  "
+            android:text=" R "
             android:layout_width="175dp"
             android:layout_height="175dp"
             android:textSize="30sp"
